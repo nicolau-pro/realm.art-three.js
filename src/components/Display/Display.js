@@ -1,31 +1,29 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
 
 import Lights from '../Helpers/Lights';
 import CameraController from '../Helpers/CameraController';
 import Floor from '../Models/Floor';
-import Mesh from '../Models/Mesh';
+import Mesh from '../Models/Mesh.Animation';
+import Line from '../Models/Line.Animation';
 
-function AnimatedMesh() {
-  const ref = useRef();
-  useFrame((state) => {
-    ref.current.position.y = Math.sin(state.clock.getElapsedTime());
-  });
-
+const Scene = () => {
   return (
-    <group ref={ref}>
-      <Mesh />
+    <group>
+      <Floor />
+      <Suspense fallback={<Mesh />}>
+        <Line />
+      </Suspense>
+      <Lights />
     </group>
   );
-}
+};
 
 export default function Display() {
   return (
-    <Canvas>
+    <Canvas style={{ background: 'black' }} shadowMap colorManagement>
       <CameraController />
-      <Lights />
-      <Floor />
-      <AnimatedMesh />
+      <Scene />
     </Canvas>
   );
 }

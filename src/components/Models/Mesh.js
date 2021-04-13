@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-const Mesh = () => {
+const Mesh = (props) => {
   const settings = {
     mesh: {
-      position: [0, 0, 0.5],
+      position: [0, 0, 1],
+      scale: [0.1, 0.1, 0.1],
     },
 
-    boxGeometry: {
+    torusKnotGeometry: {
       attach: 'geometry',
-      args: [3, 2, 1],
+      args: [10, 3, 100, 16],
     },
 
     meshPhongMaterial: {
@@ -17,11 +18,15 @@ const Mesh = () => {
     },
   };
 
+  const ref = useRef();
+
   return (
-    <mesh {...settings.mesh}>
-      <boxGeometry {...settings.boxGeometry} />
-      <meshPhongMaterial {...settings.meshPhongMaterial} />
-    </mesh>
+    <group ref={ref} {...props} dispose={null}>
+      <mesh {...settings.mesh}>
+        <torusKnotGeometry {...settings.torusKnotGeometry} />
+        <meshPhongMaterial {...settings.meshPhongMaterial} />
+      </mesh>
+    </group>
   );
 };
 
