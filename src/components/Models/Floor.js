@@ -1,19 +1,19 @@
 import React from 'react';
 
-const Mesh = () => {
+const Floor = () => {
   const settings = {
     mesh: {
-      position: [0, 0, 0.5],
+      position: [0, 0, 0],
     },
 
     boxGeometry: {
       attach: 'geometry',
-      args: [3, 2, 1],
+      args: [5, 5, 0.01],
     },
 
     meshPhongMaterial: {
       attach: 'material',
-      color: 0x808080,
+      color: 0xff0000,
     },
   };
 
@@ -25,4 +25,4 @@ const Mesh = () => {
   );
 };
 
-export default Mesh;
+export default Floor;
