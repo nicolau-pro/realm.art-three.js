@@ -1,32 +1,36 @@
-import React from 'react';
-import THREELib from 'three-js';
-const THREE = THREELib();
+import React, { useEffect } from 'react';
+import { Canvas, useThree } from '@react-three/fiber';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+const CameraController = () => {
+  const { camera, gl } = useThree();
+
+  useEffect(() => {
+    const controls = new OrbitControls(camera, gl.domElement);
+
+    controls.minDistance = 1;
+    controls.maxDistance = 5;
+
+    return () => {
+      controls.dispose();
+    };
+  }, [camera, gl]);
+
+  return null;
+};
 
 const Display = () => {
-  const scene = new THREE.Scene();
-
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 5;
-
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  };
-
-  animate();
-
-  return <div />;
+  return (
+    <Canvas>
+      <CameraController />
+      <ambientLight />
+      <spotLight intensity={0.3} position={[5, 10, 50]} />
+      <mesh>
+        <boxGeometry attach='geometry' args={[3, 2, 1]} />
+        <meshPhongMaterial attach='material' color='hotpink' />
+      </mesh>
+    </Canvas>
+  );
 };
 
 export default Display;

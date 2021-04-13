@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/fiber": "^6.0.13",
     "classnames": "^2.3.1",
-    "react": "^16.10.1",
+    "react": ">=17.0",
     "react-dom": "^16.10.1",
     "react-scripts": "3.2.0",
+    "three": "^0.127.0",
     "three-js": "^79.0.0"
   },
   "scripts": {
