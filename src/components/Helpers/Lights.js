@@ -33,15 +33,15 @@ const Lights = () => {
     spotLight: {
       position: [5, 10, 50],
       intensity: 2,
-      color: 0x0000ff,
-      angle: 0.03,
+      color: 0xff0000,
+      angle: 0.02,
       penumbra: 0.1,
     },
 
     sun: {
       position: [100, 50, 100],
       rotation: [-Math.PI / 2, 0, 0],
-      intensity: 2,
+      intensity: 1,
     },
   };
 

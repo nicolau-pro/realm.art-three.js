@@ -1,12 +1,10 @@
 import React, { useRef } from 'react';
 
 const Sun = (props) => {
-  const res = 20;
-
   const settings = {
     sphereGeometry: {
       attach: 'geometry',
-      args: [res, res, res],
+      args: [1, 32, 32],
     },
 
     meshBasicMaterial: {
@@ -19,7 +17,7 @@ const Sun = (props) => {
 
   return (
     <group ref={ref} {...props} dispose={null}>
-      <mesh scale={[1 / res, 1 / res, 1 / res]}>
+      <mesh>
         <sphereGeometry {...settings.sphereGeometry} />
         <meshBasicMaterial {...settings.meshPhongMaterial} />
       </mesh>

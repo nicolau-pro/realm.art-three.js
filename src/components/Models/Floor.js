@@ -15,7 +15,7 @@ const Floor = (props) => {
 
     meshPhongMaterial: {
       attach: 'material',
-      color: 0xff0000,
+      color: 0x009900,
       side: THREE.DoubleSide,
     },
   };

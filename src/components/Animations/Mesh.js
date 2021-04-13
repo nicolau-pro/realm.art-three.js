@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import Mesh from './Mesh';
+import Mesh from '../Models/Mesh';
 
 export default function MeshAnimation() {
   const ref = useRef();
